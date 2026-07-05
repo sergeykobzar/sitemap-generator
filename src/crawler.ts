@@ -74,8 +74,9 @@ export class Crawler {
     const url = normaliseUrl(input, source, this.config);
     if (!url) return;
     if (this.queued.has(url) || this.seen.has(url)) return;
-    if (!this.shouldConsider(url)) {
-      countSkip(this.report, "pattern-or-domain");
+    const skipReason = this.getConfigFilterSkipReason(url);
+    if (skipReason) {
+      this.recordSkippedUrl(url, skipReason, source);
       return;
     }
 
@@ -161,13 +162,21 @@ export class Crawler {
     }
   }
 
-  private shouldConsider(url: string): boolean {
-    if (!isAllowedDomain(url, this.config.allowedDomains)) return false;
+  private getConfigFilterSkipReason(url: string): string | undefined {
+    if (!isAllowedDomain(url, this.config.allowedDomains)) return "outside-domain";
     if (this.includePatterns.length > 0 && !this.includePatterns.some((pattern) => pattern.test(url))) {
-      return false;
+      return "not-included-by-pattern";
     }
-    if (this.excludePatterns.some((pattern) => pattern.test(url))) return false;
-    return true;
+    if (this.excludePatterns.some((pattern) => pattern.test(url))) return "excluded-by-pattern";
+    return undefined;
+  }
+
+  private recordSkippedUrl(url: string, reason: string, source: string | undefined): void {
+    countSkip(this.report, reason);
+    this.report.skippedUrls.push({ url, reason, source });
+    if (this.config.verboseLogging) {
+      console.log(`Skipped URL (${reason}): ${url}${source ? ` from ${source}` : ""}`);
+    }
   }
 
   private resolveSitemapUrl(crawledUrl: string, canonical: string | undefined): string | undefined {

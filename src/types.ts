@@ -42,6 +42,7 @@ export interface SitemapConfig {
   includeQueryParameters: boolean;
   allowedContentTypes: string[];
   requestHeaders: Record<string, string>;
+  verboseLogging: boolean;
   timeoutMs: number;
   retries: number;
   lastmod: LastmodConfig;
@@ -81,6 +82,12 @@ export interface RedirectRecord {
   status: number;
 }
 
+export interface SkippedUrl {
+  url: string;
+  reason: string;
+  source?: string;
+}
+
 export interface CrawlReport {
   startedAt: string;
   finishedAt?: string;
@@ -90,6 +97,7 @@ export interface CrawlReport {
   pagesNotFollowedNofollow: number;
   brokenLinks: BrokenLink[];
   redirects: RedirectRecord[];
+  skippedUrls: SkippedUrl[];
   urlsWritten: number;
   skippedReasons: Record<string, number>;
 }

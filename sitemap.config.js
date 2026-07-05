@@ -28,6 +28,7 @@ export default {
   includeQueryParameters: false,
   allowedContentTypes: ["text/html", "application/xhtml+xml"],
   requestHeaders: {},
+  verboseLogging: true,
   lastmod: {
     enabled: true,
     source: "http-header",

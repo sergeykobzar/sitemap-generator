@@ -64,6 +64,7 @@ export default {
   includeQueryParameters: false,
   allowedContentTypes: ["text/html", "application/xhtml+xml"],
   requestHeaders: {},
+  verboseLogging: true,
   lastmod: {
     enabled: true,
     source: "http-header",
@@ -130,6 +131,7 @@ Sitemap URLs are XML-escaped and duplicate sitemap entries are removed.
 | `includeQueryParameters` | Keep query parameters after stripping configured parameters. |
 | `allowedContentTypes` | Response media types eligible for parsing and sitemap inclusion. |
 | `requestHeaders` | Extra headers, useful for auth or previews. |
+| `verboseLogging` | Print per-URL verbose messages, such as config-filtered skipped URLs. Defaults to `true`. |
 | `timeoutMs` | Request timeout in milliseconds. |
 | `retries` | Retry count for transient fetch failures. |
 | `lastmod` | Configure `lastmod` from `http-header`, `today`, or `disabled`. |

@@ -23,6 +23,7 @@ const defaults: Omit<
   includeQueryParameters: true,
   allowedContentTypes: ["text/html", "application/xhtml+xml"],
   requestHeaders: {},
+  verboseLogging: true,
   timeoutMs: 15000,
   retries: 0,
   lastmod: {

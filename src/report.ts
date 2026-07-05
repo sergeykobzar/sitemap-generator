@@ -11,6 +11,7 @@ export function createReport(): CrawlReport {
     pagesNotFollowedNofollow: 0,
     brokenLinks: [],
     redirects: [],
+    skippedUrls: [],
     urlsWritten: 0,
     skippedReasons: {}
   };

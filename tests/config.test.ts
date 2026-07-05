@@ -18,6 +18,7 @@ describe("mergeConfig", () => {
     expect(config.startUrls).toEqual(["https://Example.com"]);
     expect(config.allowedDomains).toEqual(["example.com"]);
     expect(config.outputDir).toBe("./dist/sitemaps");
+    expect(config.verboseLogging).toBe(true);
   });
 });
 
