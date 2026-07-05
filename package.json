@@ -1,0 +1,40 @@
+{
+  "name": "sitemap-generator",
+  "version": "1.0.0",
+  "description": "A configurable Node.js CLI for crawling public websites and generating XML sitemaps.",
+  "type": "module",
+  "bin": {
+    "sitemap-generator": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "test": "vitest run",
+    "dev": "tsx src/cli.ts"
+  },
+  "keywords": [
+    "sitemap",
+    "crawler",
+    "seo",
+    "cli"
+  ],
+  "author": "Sergey Kobzar",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
